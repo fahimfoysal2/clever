@@ -16,11 +16,11 @@ const Registration = () => {
     // "timezone": "",
     // "timezone_country": "",
     gender: "",
-    // "address_street": "",
-    // "address_postalcode": "",
-    // "address_city": "",
-    // "address_state": "",
-    // "address_country": ""
+    address_street: "",
+    address_postalcode: "",
+    address_city: "",
+    address_state: "",
+    address_country: "",
   });
   const onInputChange = (e) => {
     console.log(e.target.value);
@@ -51,9 +51,10 @@ const Registration = () => {
             <img src={logo} alt="" />
             <p>Create to your Clever Messenger account</p>
 
-            <div className="login-form-btn-hhcbhjfdaldif">
+            <div className="login-form-btn-hhcbhjfdaldif text-start">
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="first_name">
+                  <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter first name"
@@ -62,6 +63,8 @@ const Registration = () => {
                   />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="last_name">
+                  {" "}
+                  <Form.Label>Last Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter last name"
@@ -70,6 +73,8 @@ const Registration = () => {
                   />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="gender">
+                  {" "}
+                  <Form.Label>Gender</Form.Label>
                   <Form.Select name="gender" onChange={(e) => onInputChange(e)}>
                     <option value="Gender">Gender</option>
                     <option value="Male">Male</option>
@@ -77,14 +82,68 @@ const Registration = () => {
                   </Form.Select>
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="emailId">
+                  {" "}
+                  <Form.Label>Email Address</Form.Label>
                   <Form.Control
                     type="email"
                     placeholder="Enter email"
                     name="email"
                     onChange={(e) => onInputChange(e)}
                   />
+                </Form.Group>{" "}
+                <Form.Group className="mb-3" controlId="address_street">
+                  {" "}
+                  <Form.Label>Address Street</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="address_street"
+                    name="address_street"
+                    onChange={(e) => onInputChange(e)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="address_postalcode">
+                  {" "}
+                  <Form.Label>Postal code</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter postalcode"
+                    name="address_postalcode"
+                    onChange={(e) => onInputChange(e)}
+                  />
+                </Form.Group>{" "}
+                <Form.Group className="mb-3" controlId="address_city">
+                  {" "}
+                  <Form.Label>address city</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter address_city"
+                    name="address_city"
+                    onChange={(e) => onInputChange(e)}
+                  />
+                </Form.Group>{" "}
+                <Form.Group className="mb-3" controlId="address_state">
+                  {" "}
+                  <Form.Label>address state</Form.Label>{" "}
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter address_state"
+                    name="address_state"
+                    onChange={(e) => onInputChange(e)}
+                  />{" "}
+                </Form.Group>{" "}
+                <Form.Group className="mb-3" controlId="address_country">
+                  {" "}
+                  <Form.Label>address_country</Form.Label>{" "}
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your country"
+                    name="address_country"
+                    onChange={(e) => onInputChange(e)}
+                  />{" "}
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
+                  {" "}
+                  <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
                     placeholder="Password"
