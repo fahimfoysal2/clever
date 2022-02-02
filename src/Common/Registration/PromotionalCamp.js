@@ -1,6 +1,6 @@
 import React from "react";
 import "./registration.scss";
-const Registration = () => {
+const PromotionalCamp = () => {
   return (
     <div>
       <div className="registration-main-area-wrap">
@@ -27,4 +27,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default PromotionalCamp;

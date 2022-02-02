@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import Login from "./Common/Login/Login";
-import Registration from "./Common/Registration/Registration";
+import Registration from "./Common/Login/Registration";
 const App = () => {
   return (
     <Router>
