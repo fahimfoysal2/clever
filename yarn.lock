@@ -2656,6 +2656,11 @@ braces@^3.0.1, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
+browser-locale@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/browser-locale/-/browser-locale-1.0.3.tgz#3c6646e6dd5f7a3c62ff51d4ae618a5dd3126911"
+  integrity sha1-PGZG5t1fejxi/1HUrmGKXdMSaRE=
+
 browser-process-hrtime@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/browser-process-hrtime/-/browser-process-hrtime-1.0.0.tgz#3c9b4b7d782c8121e56f10106d84c0d0ffc94626"
@@ -3060,6 +3065,16 @@ cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+countries-and-timezones@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/countries-and-timezones/-/countries-and-timezones-3.3.0.tgz#c2a0c319cf1c6240bda9d69edcbd2d6861a091e6"
+  integrity sha512-HkuEKmiHSAOoRW6FAQsCywd6XI6V0g7a4EfQXc99c7bh4vnCAhnoZ1jHEV0QliJumbFX8lFbCX2nu5d8eUiEJw==
+
+country-timezone-list@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/country-timezone-list/-/country-timezone-list-1.0.5.tgz#dd630aca0c501ae32f5632b72ae4ce3cc935e20c"
+  integrity sha512-kYu8S6UMH/rjTBBGynyyq23bJ2AcwS4hksUljNfNZlkJJr9XqPoiUvXZdGDRZUYnalnGEW9Cc/US0kLTyEW6AQ==
+
 cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -3409,6 +3424,11 @@ destroy@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
+
+detect-browser-language@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/detect-browser-language/-/detect-browser-language-0.0.2.tgz#3113c2f5951d9b9d6d79cfdaca0965ae75ca0564"
+  integrity sha512-P/MsYjpZArhT40nJkJuE9fCTCJxjt73iGPPQqbqB8swVB6vSiOQrsTGDaYLjeNogD2ImuR1qON/7QmQTnrNQFA==
 
 detect-newline@^3.0.0:
   version "3.1.0"
@@ -4321,6 +4341,11 @@ gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
+
+get-browser-language@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/get-browser-language/-/get-browser-language-1.0.0.tgz#3623aedbd62573299e1e78ae2527b94f386a4ffc"
+  integrity sha1-NiOu29YlcymeHniuJSe5TzhqT/w=
 
 get-caller-file@^2.0.5:
   version "2.0.5"

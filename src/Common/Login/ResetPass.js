@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "./img/logo.svg";
 import "./login.scss";
-const Login = () => {
+const ResetPass = () => {
   // let history = useHistory();
   const [loginErr, setloginErr] = useState("");
   const [user, setUser] = useState({
@@ -34,7 +34,7 @@ const Login = () => {
         <div className="login-inner-wrap">
           <div className="login-logo">
             <img src={logo} alt="" />
-            <p>Login to your Clever Messenger account</p>
+            <p>Clever Messenger account Reset</p>
 
             <div className="login-form-btn-hhcbhjfdaldif">
               <p className="text-dangertyiu">{loginErr?.error}</p>
@@ -49,19 +49,10 @@ const Login = () => {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    onChange={(e) => onInputChange(e)}
-                    required
-                  />
-                </Form.Group>
                 <Button variant="primary" type="submit">
-                  Login
+                  Reset
                 </Button>
-                <Link to="recovery-pass">Forgot password?</Link>
+
                 <p>Clever Messenger © 2022</p>
                 <Link to="/registration">
                   Don't got a Clever Messenger account yet?
@@ -75,4 +66,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPass;

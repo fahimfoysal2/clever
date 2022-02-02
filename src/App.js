@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import Login from "./Common/Login/Login";
 import Registration from "./Common/Login/Registration";
+import ResetPass from "./Common/Login/ResetPass";
 const App = () => {
   return (
     <Router>
@@ -13,6 +14,7 @@ const App = () => {
         {/* <Route exact path="/">
           <Login />
         </Route> */}
+        <Route exact path="/recovery-pass" component={ResetPass} />
         <Route exact path="/" component={Login} />
       </Switch>
     </Router>
