@@ -8,6 +8,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
+        <Route exact path="/login" component={Login} />
         <Route exact path="/registration">
           <Registration />
         </Route>{" "}
@@ -15,7 +16,6 @@ const App = () => {
           <Login />
         </Route> */}
         <Route exact path="/recovery-pass" component={ResetPass} />
-        <Route exact path="/" component={Login} />
       </Switch>
     </Router>
   );

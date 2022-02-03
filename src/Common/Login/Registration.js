@@ -57,6 +57,8 @@ const Registration = () => {
             <p>Create to your Clever Messenger account</p>
             {/* {detectBrowserLanguage} */}
             <div className="login-form-btn-hhcbhjfdaldif text-start">
+              <p className="text-dangertyiu">{loginErr?.error}</p>
+              <p className="text-dangertyiu">{loginErr?.message}</p>
               <Form onSubmit={handleSubmit}>
                 <Row>
                   <Col lg={6}>
@@ -201,8 +203,6 @@ const Registration = () => {
                 <p>Clever Messenger © 2022</p>
                 <Link to="/login">Already have an account?</Link>
               </Form>
-              <p className="text-dangertyiu">{loginErr?.error}</p>
-              <p className="text-dangertyiu">{loginErr?.message}</p>
             </div>
           </div>
         </div>

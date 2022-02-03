@@ -17,7 +17,7 @@ const ResetPass = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post(`http://localhost:3000/v1/auth/login`, user)
+      .post(`http://localhost:3000/v1/auth/reset-password`, user)
       .then(function (response) {
         console.log(response);
       })
@@ -37,7 +37,7 @@ const ResetPass = () => {
             <p>Clever Messenger account Reset</p>
 
             <div className="login-form-btn-hhcbhjfdaldif">
-              <p className="text-dangertyiu">{loginErr?.error}</p>
+              <p className="text-dangertyiu">{loginErr?.message}</p>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Control
