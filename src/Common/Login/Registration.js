@@ -61,10 +61,29 @@ const Registration = () => {
           <div className="login-logo">
             <img src={logo} alt="" />
             <p>Create to your Clever Messenger account</p>
-            {/* {detectBrowserLanguage} */}
             <div className="login-form-btn-hhcbhjfdaldif text-start">
-              <p className="text-dangertyiu">{loginErr?.error}</p>
-              <p className="text-dangertyiu">{loginErr?.message}</p>
+              <div className="text-dangertyiu">
+                {loginErr.error ? (
+                  <div>
+                    <h2 className="text-dangertyiu">
+                      Incorrect registration data.
+                    </h2>
+                  </div>
+                ) : null}{" "}
+              </div>
+              <div className="text-dangertyiu  mb-3">
+                {loginErr ? (
+                  <div>
+                    {loginErr.message &&
+                      loginErr.message.map &&
+                      loginErr.message.map((item, i) => {
+                        return <li key={i}>{item}</li>;
+                      })}
+                  </div>
+                ) : (
+                  loginErr.message
+                )}
+              </div>
               <Form onSubmit={handleSubmit}>
                 <Row>
                   <Col lg={6}>

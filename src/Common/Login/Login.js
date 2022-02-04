@@ -37,7 +37,26 @@ const Login = () => {
             <p>Login to your Clever Messenger account</p>
 
             <div className="login-form-btn-hhcbhjfdaldif">
-              <p className="text-dangertyiu">{loginErr?.error}</p>
+              <div className="text-dangertyiu text-start">
+                {loginErr.error ? (
+                  <div>
+                    <h2 className="text-dangertyiu">Incorrect Login data.</h2>
+                  </div>
+                ) : null}
+              </div>
+              <div className="text-dangertyiu mb-3 text-start">
+                {loginErr ? (
+                  <div>
+                    {loginErr.message &&
+                      loginErr.message.map &&
+                      loginErr.message.map((item, i) => {
+                        return <li key={i}>{item}</li>;
+                      })}
+                  </div>
+                ) : (
+                  loginErr.message
+                )}
+              </div>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Control

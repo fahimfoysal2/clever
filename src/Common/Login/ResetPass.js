@@ -23,7 +23,7 @@ const ResetPass = () => {
       })
       .catch(function (error) {
         const errorMass = error.response.data;
-        // console.log(errorMass);
+        console.log(errorMass);
         setloginErr(errorMass);
       });
     // history.push("/");
@@ -37,7 +37,14 @@ const ResetPass = () => {
             <p>Clever Messenger account Reset</p>
 
             <div className="login-form-btn-hhcbhjfdaldif">
-              <p className="text-dangertyiu">{loginErr?.message}</p>
+              <div className="text-dangertyiu text-start mb-3">
+                {loginErr.message ? (
+                  <div>
+                    <p className="text-dangertyiu">{loginErr.message}</p>
+                  </div>
+                ) : null}
+              </div>
+
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Control
