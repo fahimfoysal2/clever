@@ -1,28 +1,23 @@
 import axios from "axios";
-import { getTimezoneList } from "country-timezone-list";
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import * as usertz from "user-timezone";
+import { CountryList } from "../CountryList";
 import logo from "./img/logo.svg";
 import "./login.scss";
-const getBrowserLanguage = require("get-browser-language");
-const ct = require("countries-and-timezones");
 const Registration = () => {
-  const [timezone, setTimezone] = useState(getTimezoneList);
-
-  const country = ct.getCountry("BD");
-  var lang = getBrowserLanguage();
-  const timeZone = timezone[0].offset;
+  const timezone11 = usertz.getTimeZone();
+  console.log(timezone11);
   const [loginErr, setloginErr] = useState([]);
-
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
     email: "",
     password: "",
-    locale: { lang },
-    timezone: { country },
-    timezone_country: { timeZone },
+    locale: "",
+    timezone: timezone11,
+    timezone_country: "",
     gender: "",
     address_street: "",
     address_postalcode: "",
@@ -30,16 +25,27 @@ const Registration = () => {
     address_state: "",
     address_country: "",
   });
-  const onInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+  const onInputChange = (e, index) => {
+    const oldValues = { ...user };
+    oldValues[e.target.name] = e.target.value;
+
+    if (e.target.name === "timezone_country") {
+      const selectedCountry = CountryList.find(
+        (country) => country.name.common === e.target.value
+      );
+      const language = Object.values(selectedCountry.languages)[0];
+      oldValues.locale = language;
+      console.log(selectedCountry, language);
+    }
+    setUser(oldValues);
   };
-  console.log(user);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
       .post(`http://localhost:3000/v1/auth/register`, user)
       .then(function (response) {
-        // setUser(response);
+        setUser(response);
       })
       .catch(function (error) {
         const errorMass = error.response.data;
@@ -47,7 +53,7 @@ const Registration = () => {
         setloginErr(errorMass);
       });
   };
-
+  console.log(user);
   return (
     <div>
       <div className="login-main-area-wrap registration">
@@ -73,6 +79,7 @@ const Registration = () => {
                       />
                     </Form.Group>{" "}
                   </Col>
+                  {/* ========================== */}
                   <Col lg={6}>
                     <Form.Group className="mb-3" controlId="last_name">
                       {" "}
@@ -81,6 +88,20 @@ const Registration = () => {
                         type="text"
                         placeholder="Enter last name"
                         name="last_name"
+                        required
+                        onChange={(e) => onInputChange(e)}
+                      />
+                    </Form.Group>{" "}
+                  </Col>
+                  {/* ========================== */}
+                  <Col lg={6}>
+                    <Form.Group className="mb-3" controlId="emailId">
+                      {" "}
+                      <Form.Label>Email Address</Form.Label>
+                      <Form.Control
+                        type="email"
+                        placeholder="Enter email"
+                        name="email"
                         required
                         onChange={(e) => onInputChange(e)}
                       />
@@ -100,18 +121,30 @@ const Registration = () => {
                         <option value="Female">Female</option>
                       </Form.Select>
                     </Form.Group>{" "}
-                  </Col>
+                  </Col>{" "}
                   <Col lg={6}>
-                    <Form.Group className="mb-3" controlId="emailId">
+                    <Form.Group className="mb-3" controlId="gender">
                       {" "}
-                      <Form.Label>Email Address</Form.Label>
-                      <Form.Control
-                        type="email"
-                        placeholder="Enter email"
-                        name="email"
+                      <Form.Label>country</Form.Label>
+                      <Form.Select
+                        name="timezone_country"
                         required
-                        onChange={(e) => onInputChange(e)}
-                      />
+                        onChange={(e, index) => onInputChange(e, index)}
+                      >
+                        {CountryList.map((item, i) => {
+                          return (
+                            <option key={i} value={item.name.common}>
+                              {/* {i + 1} */}
+                              {/* {console.log(item)} */}
+                              {item.name.common}
+                            </option>
+                          );
+                        })}
+
+                        <option value="Gender">Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </Form.Select>
                     </Form.Group>{" "}
                   </Col>
                   <Col lg={6}>

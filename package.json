@@ -24,6 +24,7 @@
     "react-tabs": "^3.2.3",
     "redux-persist": "^6.0.0",
     "sass": "^1.48.0",
+    "user-timezone": "^1.0.3",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
