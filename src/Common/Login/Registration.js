@@ -7,8 +7,7 @@ import { CountryList } from "../CountryList";
 import logo from "./img/logo.svg";
 import "./login.scss";
 const Registration = () => {
-  const timezone11 = usertz.getTimeZone();
-  console.log(timezone11);
+  const timezoneInput = usertz.getTimeZone();
   const [loginErr, setloginErr] = useState([]);
   const [user, setUser] = useState({
     first_name: "",
@@ -16,7 +15,7 @@ const Registration = () => {
     email: "",
     password: "",
     locale: "",
-    timezone: timezone11,
+    timezone: timezoneInput,
     timezone_country: "",
     gender: "",
     address_street: "",
@@ -35,7 +34,7 @@ const Registration = () => {
       );
       const language = Object.values(selectedCountry.languages)[0];
       oldValues.locale = language;
-      console.log(selectedCountry, language);
+      oldValues.address_country = selectedCountry.name.common;
     }
     setUser(oldValues);
   };
@@ -49,11 +48,9 @@ const Registration = () => {
       })
       .catch(function (error) {
         const errorMass = error.response.data;
-        console.log(errorMass);
         setloginErr(errorMass);
       });
   };
-  console.log(user);
   return (
     <div>
       <div className="login-main-area-wrap registration">
@@ -71,13 +68,13 @@ const Registration = () => {
                   </div>
                 ) : null}{" "}
               </div>
-              <div className="text-dangertyiu  mb-3">
+              <div className="text-dangertyiu mb-3">
                 {loginErr ? (
                   <div>
                     {loginErr.message &&
                       loginErr.message.map &&
                       loginErr.message.map((item, i) => {
-                        return <li key={i}>{item}</li>;
+                        return <li className="capitalize" key={i}>{item}</li>;
                       })}
                   </div>
                 ) : (
@@ -127,6 +124,19 @@ const Registration = () => {
                     </Form.Group>{" "}
                   </Col>
                   <Col lg={6}>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      {" "}
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        required
+                        onChange={(e) => onInputChange(e)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col lg={6}>
                     <Form.Group className="mb-3" controlId="gender">
                       {" "}
                       <Form.Label>Gender</Form.Label>
@@ -142,7 +152,7 @@ const Registration = () => {
                     </Form.Group>{" "}
                   </Col>{" "}
                   <Col lg={6}>
-                    <Form.Group className="mb-3" controlId="gender">
+                    <Form.Group className="mb-3" controlId="timezone_country">
                       {" "}
                       <Form.Label>country</Form.Label>
                       <Form.Select
@@ -153,8 +163,6 @@ const Registration = () => {
                         {CountryList.map((item, i) => {
                           return (
                             <option key={i} value={item.name.common}>
-                              {/* {i + 1} */}
-                              {/* {console.log(item)} */}
                               {item.name.common}
                             </option>
                           );
@@ -218,32 +226,6 @@ const Registration = () => {
                       />{" "}
                     </Form.Group>{" "}
                   </Col>
-                  <Col lg={6}>
-                    <Form.Group className="mb-3" controlId="address_country">
-                      {" "}
-                      <Form.Label>Country</Form.Label>{" "}
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter your country"
-                        name="address_country"
-                        required
-                        onChange={(e) => onInputChange(e)}
-                      />{" "}
-                    </Form.Group>
-                  </Col>
-                  <Col lg={6}>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                      {" "}
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        required
-                        onChange={(e) => onInputChange(e)}
-                      />
-                    </Form.Group>
-                  </Col>
                   <Col lg={12}>
                     <Button variant="primary" type="submit">
                       Register
@@ -251,9 +233,9 @@ const Registration = () => {
                   </Col>
                 </Row>
 
-                <Link to="/recovery-pass">Forgot password?</Link>
-                <p>Clever Messenger © 2022</p>
+                <Link to="/recovery-pass">Forgot password?</Link> <br />
                 <Link to="/login">Already have an account?</Link>
+                <p>Clever Messenger © 2022</p>
               </Form>
             </div>
           </div>

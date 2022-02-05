@@ -23,7 +23,6 @@ const Login = () => {
       })
       .catch(function (error) {
         const errorMass = error.response.data;
-        // console.log(errorMass);
         setloginErr(errorMass);
       });
     // history.push("/");
@@ -50,7 +49,7 @@ const Login = () => {
                     {loginErr.message &&
                       loginErr.message.map &&
                       loginErr.message.map((item, i) => {
-                        return <li key={i}>{item}</li>;
+                        return <li className="capitalize" key={i}>{item}</li>;
                       })}
                   </div>
                 ) : (
@@ -80,12 +79,12 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                   Login
                 </Button>
-                <Link to="recovery-pass">Forgot password?</Link>
-                <p>Clever Messenger © 2022</p>
-                <Link to="/registration">
-                  Don't got a Clever Messenger account yet?
-                </Link>
               </Form>
+              <Link to="recovery-pass">Forgot password?</Link><br />
+              <Link to="/registration">
+                Don't got a Clever Messenger account yet?
+              </Link>
+              <p>Clever Messenger © 2022</p>
             </div>
           </div>
         </div>
