@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import "react-responsive-modal/styles.css";
 import { Link, useHistory } from "react-router-dom";
 import logo from "./img/logo.svg";
 import "./login.scss";
@@ -16,17 +17,27 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // const url = process.env.REACT_APP_API_URL;
     await axios
-      .post(`http://localhost:3000/v1/auth/login`, user)
+      .post(process.env.REACT_APP_API_URL + `auth/login`, user)
       .then(function (response) {
-        console.log(response);
+        if (response.statusText === "OK") {
+          setTimeout(() => {
+            history.push("/");
+          }, 1);
+
+          localStorage.setItem(
+            "authUser",
+            JSON.stringify(response.data.api_key)
+          );
+        }
       })
       .catch(function (error) {
         const errorMass = error.response.data;
         setloginErr(errorMass);
       });
-    history.push("/");
   };
+
   return (
     <div>
       <div className="login-main-area-wrap">
@@ -39,27 +50,12 @@ const Login = () => {
               <div className="text-dangertyiu text-start">
                 {loginErr.error ? (
                   <div>
-                    <h2 className="text-dangertyiu">Incorrect Login data.</h2>
+                    <span className="text-dangertyiu">{loginErr.error}</span>
                   </div>
                 ) : null}
               </div>
-              <div className="text-dangertyiu mb-3 text-start">
-                {
-                    loginErr ? (
-                      Array.isArray(loginErr.message) ? (
-                          <div>
-                            {loginErr.message &&
-                                loginErr.message.map &&
-                                loginErr.message.map((item, i) => {
-                                  return <li className="capitalize" key={i}>{item}</li>;
-                                })}
-                          </div>
-                      ) : (
-                        <li>{loginErr.message}</li>
-                      )
-                    ) : (loginErr.message)
-                }
-              </div>
+              <div className="text-dangertyiu mb-3 text-start"></div>
+
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Control
@@ -69,6 +65,13 @@ const Login = () => {
                     onChange={(e) => onInputChange(e)}
                     required
                   />
+                  {loginErr.error ? (
+                    <div className="text-start">
+                      <span className="text-dangertyiu">
+                        {loginErr.message}
+                      </span>
+                    </div>
+                  ) : null}
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -84,11 +87,12 @@ const Login = () => {
                   Login
                 </Button>
               </Form>
-              <Link to="recovery-pass">Forgot password?</Link><br />
+              <Link to="recovery-pass">Forgot password?</Link>
+              <br />
               <Link to="/registration">
                 Don't got a Clever Messenger account yet?
               </Link>
-              <p>Clever Messenger © 2022</p>
+              <p className="mt-3">Clever Messenger © 2022</p>
             </div>
           </div>
         </div>

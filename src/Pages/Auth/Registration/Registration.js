@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import "react-responsive-modal/styles.css";
+import { Link, useHistory } from "react-router-dom";
 import * as usertz from "user-timezone";
-import { CountryList } from "../CountryList";
-import logo from "./img/logo.svg";
-import "./login.scss";
+import { CountryList } from "../../../Common/CountryList";
+import logo from "../Login/img/logo.svg";
+import "../Login/login.scss";
 const Registration = () => {
+  let history = useHistory();
   const timezoneInput = usertz.getTimeZone();
   const [loginErr, setloginErr] = useState([]);
   const [user, setUser] = useState({
@@ -27,7 +29,6 @@ const Registration = () => {
   const onInputChange = (e, index) => {
     const oldValues = { ...user };
     oldValues[e.target.name] = e.target.value;
-
     if (e.target.name === "timezone_country") {
       const selectedCountry = CountryList.find(
         (country) => country.name.common === e.target.value
@@ -42,15 +43,24 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post(`http://localhost:3000/v1/auth/register`, user)
+      .post(process.env.REACT_APP_API_URL + `auth/register`, user)
       .then(function (response) {
+        if (response.statusText === "Created") {
+          // setTimeout(() => {
+          //   history.push("/login");
+          //   onOpenModal(false);
+          // }, 3000);
+          // onOpenModal(true);
+        }
         setUser(response);
       })
+
       .catch(function (error) {
         const errorMass = error.response.data;
         setloginErr(errorMass);
       });
   };
+
   return (
     <div>
       <div className="login-main-area-wrap registration">
@@ -58,34 +68,37 @@ const Registration = () => {
           <div className="login-logo">
             <img src={logo} alt="" />
             <p>Create to your Clever Messenger account</p>
-            <div className="login-form-btn-hhcbhjfdaldif text-start">
-              <div className="text-dangertyiu">
-                {loginErr.error ? (
+            <div className="login-form-btn-hhcbhjfdaldif ">
+              <div className="text-dangertyiu text-start">
+                {loginErr.error === "Conflict" ? (
                   <div>
-                    <h2 className="text-dangertyiu">
-                      Incorrect registration data.
-                    </h2>
+                    <p className="text-dangertyiu">
+                      {loginErr.message} <br />
+                      <Link to="/login" className="success-goto-login-page">
+                        Go Login
+                      </Link>
+                    </p>
                   </div>
                 ) : null}{" "}
               </div>
               <div className="text-dangertyiu mb-3 text-start">
-                {
-                  loginErr ? (
-                      Array.isArray(loginErr.message) ? (
-                          <div>
-                            {loginErr.message &&
-                                loginErr.message.map &&
-                                loginErr.message.map((item, i) => {
-                                  return <li className="capitalize" key={i}>{item}</li>;
-                                })}
-                          </div>
-                      ) : (
-                          <li>{loginErr.message}</li>
-                      )
-                  ) : (loginErr.message)
-                }
+                {loginErr ? (
+                  <div>
+                    {loginErr.message &&
+                      loginErr?.message.map &&
+                      loginErr?.message.map((item, i) => {
+                        return (
+                          <li className="capitalize" key={i}>
+                            {item}
+                          </li>
+                        );
+                      })}
+                  </div>
+                ) : (
+                  "jfhgksbn"
+                )}
               </div>
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit} className="reg-form-zjhfb">
                 <Row>
                   <Col lg={6}>
                     <Form.Group className="mb-3" controlId="first_name">
@@ -236,10 +249,9 @@ const Registration = () => {
                     </Button>
                   </Col>
                 </Row>
-
                 <Link to="/recovery-pass">Forgot password?</Link> <br />
                 <Link to="/login">Already have an account?</Link>
-                <p>Clever Messenger © 2022</p>
+                <p className="mt-3">Clever Messenger © 2022</p>
               </Form>
             </div>
           </div>

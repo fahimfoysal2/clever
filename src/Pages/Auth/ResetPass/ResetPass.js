@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "./img/logo.svg";
-import "./login.scss";
+import logo from "../Login/img/logo.svg";
+import "../Login/login.scss";
 const ResetPass = () => {
   // let history = useHistory();
   const [loginErr, setloginErr] = useState("");
@@ -23,7 +23,7 @@ const ResetPass = () => {
       })
       .catch(function (error) {
         const errorMass = error.response.data;
-        console.log(errorMass);
+
         setloginErr(errorMass);
       });
     // history.push("/");
@@ -37,7 +37,7 @@ const ResetPass = () => {
             <p>Clever Messenger account Reset</p>
 
             <div className="login-form-btn-hhcbhjfdaldif">
-              <div className="text-dangertyiu text-start mb-3">
+              <div className="text-dangertyiu mb-3">
                 {loginErr.message ? (
                   <div>
                     <p className="text-dangertyiu">{loginErr.message}</p>
@@ -59,11 +59,10 @@ const ResetPass = () => {
                 <Button variant="primary" type="submit">
                   Reset
                 </Button>
-
-                <p>Clever Messenger © 2022</p>
                 <Link to="/registration">
                   Don't got a Clever Messenger account yet?
                 </Link>
+                <p className="mt-3">Clever Messenger © 2022</p>
               </Form>
             </div>
           </div>

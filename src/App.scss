@@ -1,7 +1,31 @@
-body{
-    text-decoration: none;
+body {
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  color: #666a6c !important;
+  font-size: 14px;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
+}
+p {
+  margin-bottom: 0;
+}
+button.btn {
+  // padding: 6px 17px;
+  line-height: 16px;
+  font-size: 13px;
+}
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 1.5rem);
+  padding-left: var(--bs-gutter-x, 1.5rem);
+  margin-right: auto;
+  margin-left: auto;
 }

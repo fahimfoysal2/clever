@@ -1,0 +1,21 @@
+.profile-left-content {
+  padding: 30px;
+  box-shadow: 0px 0px 10px 0px #99999970;
+  border-radius: 10px;
+  .profile-left-header {
+    margin-bottom: 30px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #99999970;
+  }
+  .form-group-profile {
+    display: flex;
+    gap: 15px;
+    label {
+      width: 170px;
+    }
+    button {
+      display: block;
+      width: 100%;
+    }
+  }
+}
